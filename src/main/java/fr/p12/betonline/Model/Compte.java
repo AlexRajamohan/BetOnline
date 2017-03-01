@@ -6,6 +6,31 @@ package fr.p12.betonline.Model;
 public class Compte {
 
     private String user, password;
+    int solde=0;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getSolde() {
+        return solde;
+    }
+
+    public void setSolde(int solde) {
+        this.solde = solde;
+    }
 
     public Compte(String user, String password){
 
@@ -13,7 +38,7 @@ public class Compte {
         this.password=password;
     }
 
-    public boolean athentification (String identifiant, String mdp){
+    public boolean authentification (String identifiant, String mdp){
         if (identifiant==user && mdp==password){
             return (true);
         }

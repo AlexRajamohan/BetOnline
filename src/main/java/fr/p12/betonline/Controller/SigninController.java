@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-public class BasicController {
+public class SigninController {
 
     @RequestMapping("/log")
     public String displayLoginPage(){

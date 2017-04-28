@@ -7,8 +7,8 @@
 
 
 /*
- * Bootstrap Documentation
- * Special styles for presenting Bootstrap's documentation and code examples.
+ * bootstrap Documentation
+ * Special styles for presenting bootstrap's documentation and code examples.
  */
 
 
@@ -64,7 +64,7 @@ h4 code {
   border-color: #fff;
 }
 
-/* Bootstrap "B" icon */
+/* bootstrap "B" icon */
 .bs-docs-booticon {
   display: block;
   font-weight: 500;
@@ -400,7 +400,7 @@ h4 code {
 /*
  * Homepage featurettes
  *
- * Reasons to use Bootstrap, entries from the Expo, and more.
+ * Reasons to use bootstrap, entries from the Expo, and more.
  */
 
 .bs-docs-featurette {

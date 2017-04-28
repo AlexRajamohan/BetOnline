@@ -6,15 +6,16 @@ package fr.p12.betonline.Model;
 public class Compte {
 
     private String user, password;
-    int solde=0;
+    float solde=0;
 
     public String getUser() {
         return user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+    //Le nom du'utilisateur (ou login) ne peut être changé
+//    public void setUser(String user) {
+//        this.user = user;
+//    }
 
     public String getPassword() {
         return password;
@@ -24,13 +25,14 @@ public class Compte {
         this.password = password;
     }
 
-    public int getSolde() {
+    public float getSolde() {
         return solde;
     }
 
-    public void setSolde(int solde) {
-        this.solde = solde;
-    }
+    //Le solde est modifiable uniquement en creditant ou debitant son compte
+//    public void setSolde(float solde) {
+//        this.solde = solde;
+//    }
 
     public Compte(String user, String password){
 
@@ -45,5 +47,13 @@ public class Compte {
         else{
             return(false);
         }
+    }
+
+    public void crediter(float montant){
+        this.solde=this.solde+montant;
+    }
+
+    public void debiter(float montant){
+        this.solde=this.solde-montant;
     }
 }

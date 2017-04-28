@@ -12,7 +12,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
   'use strict';
 
   var cw = '/*!\n' +
-           ' * Bootstrap v3.3.7 (http://getbootstrap.com)\n' +
+           ' * bootstrap v3.3.7 (http://getbootstrap.com)\n' +
            ' * Copyright 2011-' + new Date().getFullYear() + ' Twitter, Inc.\n' +
            ' * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n' +
            ' */\n\n'
@@ -64,7 +64,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
 
   function createGist(configJson, callback) {
     var data = {
-      description: 'Bootstrap Customizer Config',
+      description: 'bootstrap Customizer Config',
       'public': true,
       files: {
         'config.json': {
@@ -155,7 +155,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
   }
 
   function generateZip(css, js, fonts, config, complete) {
-    if (!css && !js) return showError('<strong>Ruh roh!</strong> No Bootstrap files selected.', new Error('no Bootstrap'))
+    if (!css && !js) return showError('<strong>Ruh roh!</strong> No bootstrap files selected.', new Error('no bootstrap'))
 
     var zip = new JSZip()
 
@@ -243,7 +243,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
       // will be 'undefined'.
       if (fileInclude || fileInclude == null)    lessSource += __less[filename]
 
-      // Custom variables are added after Bootstrap variables so the custom
+      // Custom variables are added after bootstrap variables so the custom
       // ones take precedence.
       if (filename === 'variables.less' && vars) lessSource += generateCustomLess(vars)
     })
@@ -462,7 +462,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
       configJson = JSON.stringify(configData, null, 2)
 
       var preamble = '/*!\n' +
-        ' * Generated using the Bootstrap Customizer (' + customizerUrl + ')\n' +
+        ' * Generated using the bootstrap Customizer (' + customizerUrl + ')\n' +
         ' * Config saved to config.json and ' + gistUrl + '\n' +
         ' */\n'
 
@@ -485,7 +485,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
   (function () {
     function failback() {
       $('.bs-docs-section, .bs-docs-sidebar').css('display', 'none')
-      showCallout('Looks like your current browser doesn\'t support the Bootstrap Customizer. Please take a second ' +
+      showCallout('Looks like your current browser doesn\'t support the bootstrap Customizer. Please take a second ' +
                     'to <a href="http://browsehappy.com/">upgrade to a more modern browser</a> (other than Safari).', true)
     }
     /**

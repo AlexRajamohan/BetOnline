@@ -1,8 +1,10 @@
 package fr.p12.betonline.controllers;
 
-import fr.p12.betonline.beans.Adherent_avant;
-import fr.p12.betonline.beans.Compte_avant;
-import fr.p12.betonline.beans.Pari_avant;
+import fr.p12.betonline.beans.*;
+import fr.p12.betonline.services.ServiceInterface.AdherentService;
+import fr.p12.betonline.services.ServiceInterface.CompteService;
+import fr.p12.betonline.services.ServiceInterface.PariService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,18 +22,29 @@ import java.util.Date;
  */
 
 @Controller
-public class SigninController {
+public class ConnexionController {
 
-    private ArrayList<Pari_avant> listPariAvant =new ArrayList<>();
+//    private ArrayList<Pari_avant> listPariAvant =new ArrayList<>();
     /*@Autowired
     private ListPariImpl listPariAvant=new ListPariImpl();
 */
 
-    private ArrayList<Adherent_avant> listAdherentAvant = new ArrayList<>();
+//    private ArrayList<Adherent_avant> listAdherentAvant = new ArrayList<>();
+
+    @Autowired
+    private CompteService compteService;
+
+    @Autowired
+    private AdherentService adherentService;
+
+    @Autowired
+    private PariService pariService;
 
 
     @RequestMapping(value = "/log")
     public String displayLoginPage(){
+
+
 
 //        request.getSession().setAttribute("compte", inputEmail);
 
@@ -42,15 +55,31 @@ public class SigninController {
     }
 
     @RequestMapping(value = "/logged", method = RequestMethod.POST)
-    public String displayAccountPage(@RequestParam(value = "inputEmail") String inputEmail, HttpServletRequest request){
+    public String displayAccountPage(@RequestParam(value = "inputEmail") String inputEmail,
+                                     @RequestParam(value = "inputPassword") String inputPassword,
+                                     HttpServletRequest request){
 
-        request.getSession().setAttribute("compte", inputEmail);
 
-/*        String compteCourant=request.getSession().getAttribute("compte").toString();
-        System.out.println(compteCourant);
+        String pageDeRetour="log";
+        Iterable<Adherent> listAdherents= adherentService.listAllAdherents();
+        for (Adherent a : listAdherents){
+            if(a.getEmail().equals(inputEmail) && a.getPassword().equals(inputPassword)){
 
-        System.out.println(inputEmail);*/
-        return "redirect:/logged";
+                request.getSession().setAttribute("adherent", a);
+                pageDeRetour="redirect:/logged";
+
+            }
+            else pageDeRetour= "log";
+
+        }
+
+
+        return pageDeRetour;
+
+
+
+
+
 //        return "signin/login";
     }
 
@@ -63,7 +92,7 @@ public class SigninController {
 
         System.out.println(inputDate);*/
 
-        String compteCourant=request.getSession().getAttribute("compte").toString();
+/*        String compteCourant=request.getSession().getAttribute("compte").toString();
 
         System.out.println(compteCourant);
         System.out.println(listAdherentAvant.size());
@@ -76,7 +105,14 @@ public class SigninController {
         }
 
         model.addAttribute("session", request.getSession().getAttribute("compte"));
-        model.addAttribute("listPariAvant", listPariAvant);
+        model.addAttribute("listPariAvant", listPariAvant);*/
+
+//        Adherent adherent=request.getSession().getAttribute("adherent");
+
+        Iterable<Pari> listPari= pariService.listAllParis();
+
+        model.addAttribute("listPari", listPari);
+
 
 
 
@@ -86,58 +122,7 @@ public class SigninController {
     }
 
 
-    @RequestMapping("/creationPari")
-    public String displayCreationPariPage(Model model){
 
-        SimpleDateFormat formater = null;
-
-        Date aujourdhui=new Date();
-        formater = new SimpleDateFormat("yyyy-MM-dd");
-//        System.out.println(formater.format(aujourdhui));
-
-
-        model.addAttribute("dateDaujourdhui", formater.format(aujourdhui));
-
-        return "creationPari/index";
-    }
-
-    @RequestMapping("/pariCree")
-    public String displayPariCreePage(@RequestParam(defaultValue = "", required = true) String inputObjetPari,
-                                      @RequestParam(defaultValue = "", required = true) String inputMisePari,
-                                      @RequestParam(defaultValue = "", required = true) String inputNbreParticipant,
-                                      @RequestParam(defaultValue = "", required = true) String inputDate,
-                                      Model model) throws ParseException {
-        int misePari=Integer.parseInt(inputMisePari);
-        int nbreParticipant=Integer.parseInt(inputNbreParticipant);
-        SimpleDateFormat formatter = null;
-        formatter=  new SimpleDateFormat("yyyy-MM-dd");
-        Date date = formatter.parse(inputDate);
-
-        Pari_avant pariAvant =new Pari_avant(inputObjetPari,misePari,nbreParticipant , date);
-
-        model.addAttribute("objet",inputObjetPari);
-        model.addAttribute("mise",misePari);
-        model.addAttribute("nbreParticipant",nbreParticipant);
-        model.addAttribute("date",inputDate);
-
-
-/*
-        System.out.println(pariAvant.getObjet());
-        System.out.println(pariAvant.getMise());
-        System.out.println(pariAvant.getNbreParticipant());
-        System.out.println(pariAvant.getDateLimite());
-*/
-
-        listPariAvant.add(pariAvant);
-        model.addAttribute("listPariAvant", listPariAvant);
-
-        model.addAttribute("adherent1", listAdherentAvant.get(0));
-
-
-
-//        return "creationPari/pariCree";
-        return  "signin/myAccount";
-    }
 /*
     @RequestMapping(value = "/miser")
     public String displayAccountPage(@RequestParam() String buttonMiser){
@@ -152,44 +137,10 @@ public class SigninController {
         return "signin/myAccount";
     }*/
 
-    @RequestMapping(value="/inscription")
-    public String displayInscriptionPage(){
-
-        return "inscription/inscription";
-    }
-
-    @RequestMapping("/inscriptionValide")
-    public String displayInscriptionValidePage(@RequestParam(defaultValue = "", required = false) String inputName,
-                                               @RequestParam(defaultValue = "", required = false) String inputPrenom,
-                                               @RequestParam(defaultValue = "", required = true) String inputEmail,
-                                               @RequestParam(defaultValue = "", required = true) String inputPassword,
-                                               Model model){
-
-//        Adherent_avant adherentAvant = new Adherent_avant("Raja", "Alex", new Compte_avant("alex@gmail.com", "zaraki"));
-        Adherent_avant adherentAvant = new Adherent_avant(inputName, inputPrenom, new Compte_avant(inputEmail, inputPassword));
-//		adherentAvant.getSystem().addAdherent(adherentAvant);
-        adherentAvant.crediterCompte(Float.valueOf(30));
-        System.out.println(adherentAvant.getCompteAvant().getUser());
-        System.out.println(adherentAvant.getCompteAvant().getSolde());
-        System.out.println(inputName);
-
-        model.addAttribute("nom",inputName);
-        model.addAttribute("prenom",inputPrenom);
-        model.addAttribute("email",inputEmail);
-        model.addAttribute("password",inputPassword);
-
-        listAdherentAvant.add(adherentAvant);
-        model.addAttribute("listAdherentAvant", listAdherentAvant);
-
-        return "inscription/inscriptionValide";
-    }
 
 
-    @RequestMapping("/testCSS")
-    public String displayTestCSS() {
 
-        return "testCSS";
-    }
+
 
 
 

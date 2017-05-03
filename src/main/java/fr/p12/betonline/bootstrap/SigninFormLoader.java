@@ -1,7 +1,7 @@
 package fr.p12.betonline.bootstrap;
 
-import fr.p12.betonline.Model.SigninForm;
-import fr.p12.betonline.Repositories.SigninFormRepository;
+import fr.p12.betonline.beans.SigninForm;
+import fr.p12.betonline.repositories.SigninFormRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;

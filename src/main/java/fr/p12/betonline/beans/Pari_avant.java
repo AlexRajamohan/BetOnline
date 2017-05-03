@@ -1,4 +1,4 @@
-package fr.p12.betonline.Model;
+package fr.p12.betonline.beans;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by zaraki on 24/03/17.
  */
-public class Pari extends System{
+public class Pari_avant extends System{
     private String objet;
 
     public String getObjet() {
@@ -25,16 +25,16 @@ public class Pari extends System{
         return dateLimite;
     }
 
-    public ArrayList<Adherent> getListParticipant() {
+    public ArrayList<Adherent_avant> getListParticipant() {
         return listParticipant;
     }
 
     private int mise, nbreParticipant;
     private Date dateLimite;
-    private ArrayList <Adherent> listParticipant = new ArrayList<>();
+    private ArrayList <Adherent_avant> listParticipant = new ArrayList<>();
 
 
-    public Pari(String objet, int mise, int nbreParticipant, Date dateLimite){
+    public Pari_avant(String objet, int mise, int nbreParticipant, Date dateLimite){
         super();
         this.objet=objet;
         this.mise=mise;
@@ -43,10 +43,10 @@ public class Pari extends System{
 
     }
 
-    public boolean addAdherent(Adherent adherent){
+    public boolean addAdherent(Adherent_avant adherentAvant){
 
         if (listParticipant.size() < nbreParticipant){
-            listParticipant.add(adherent);
+            listParticipant.add(adherentAvant);
             return true;
         }
          else {

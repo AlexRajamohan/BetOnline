@@ -1,7 +1,9 @@
-package fr.p12.betonline.Service.ServiceInterface;
+package fr.p12.betonline.services.ServiceInterface;
 
 import fr.p12.betonline.beans.Adherent;
 import fr.p12.betonline.beans.Pari;
+import fr.p12.betonline.repositories.PariRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by audre on 01/05/2017.
@@ -19,5 +21,9 @@ public interface PariService {
     public boolean addAdherent(Adherent adherent);
 
     public void cloturer();
+
+    @Autowired
+    public void setPariRepository(PariRepository pariRepository);
+
 
 }

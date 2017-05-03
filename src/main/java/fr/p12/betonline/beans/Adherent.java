@@ -15,34 +15,35 @@ import javax.validation.constraints.NotNull;
 @Table(name="adherent")
 public class Adherent{
 
-    @Id
-    @NotNull
-    @Column(name="email")
-    private String login;
 
-    @NotNull
+
+    @Id
+    @Column(name="email")
+    private String email;
+
     @Column(name="password")
     private String password;
 
-    @NotNull
     @Column(name="nom")
     private String nom;
 
-    @NotNull
     @Column(name="prenom")
     private String prenom;
 
-    @NotNull
     @Column(name="compte")
-    private Compte compte=new Compte(login, password);
+    private Compte compte=new Compte(email, password);
 
 
-    public Adherent(String nom, String prenom, Compte compte){
-        super();
+    public Adherent(String email, String password, String nom, String prenom, Compte compte){
+        this.email=email;
         this.nom=nom;
         this.prenom=prenom;
         this.compte=compte;
     }
+
+    public Adherent(){
+         new Compte();
+        }
 
 
     public String getPassword() {
@@ -77,13 +78,15 @@ public class Adherent{
         this.compte = compte;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+
 
 
 }

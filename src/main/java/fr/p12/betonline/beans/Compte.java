@@ -12,16 +12,20 @@ import java.io.Serializable;
 public class Compte implements Serializable {
 
     @Id
-    @NotNull
     @Column(name="email")
     /*@Pattern(regexp = "^a-zA-Z+a-zA-Z0-9\\._-*a-zA-Z0-9@a-zA-Z0-9a-zA-Z0-9\\._-*a-zA-Z0-9+\\.a-zA-Z{2,4}$")*/
     private String email;
 
-    @NotNull
     @Column(name="password")
     private String password;
 
+
+
+    @Column(name="solde")
+    private float solde=0;
+
     public Compte(String email, String password){
+
 
         this.email = email;
         this.password = password;
@@ -29,7 +33,13 @@ public class Compte implements Serializable {
 
     public Compte(){
     }
+        public float getSolde() {
+            return solde;
+        }
 
+        public void setSolde(float solde) {
+            this.solde = solde;
+        }
         public String getEmail() {
             return email;
         }

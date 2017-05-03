@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableAutoConfiguration
-@EntityScan(basePackages = {"fr.p12.betonline.Model"})
-@EnableJpaRepositories(basePackages = {"fr.p12.betonline.Repositories"})
+@EntityScan(basePackages = {"fr.p12.betonline.beans"})
+@EnableJpaRepositories(basePackages = {"fr.p12.betonline.repositories"})
 @EnableTransactionManagement
 public class RepositoryConfiguration {
 }

@@ -1,4 +1,4 @@
-package fr.p12.betonline.Controller;
+package fr.p12.betonline.controllers;
 
 import fr.p12.betonline.beans.Compte;
 import fr.p12.betonline.services.ServiceInterface.CompteService;

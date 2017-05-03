@@ -1,7 +1,4 @@
-package fr.p12.betonline.Model;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+package fr.p12.betonline.beans;
 
 /**
  * Created by zaraki on 29/03/17.

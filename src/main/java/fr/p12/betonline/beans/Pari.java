@@ -17,24 +17,20 @@ import java.util.Date;
 public class Pari{
 
     @Id
-    @NotNull
     @Column(name="objet")
     private String objet;
 
-    @NotNull
     @Column(name="mise")
     private int mise;
 
-    @NotNull
     @Column(name="nbreMaxParticipant")
     private int nbreParticipant;
 
-    @NotNull
     @Column(name="dateLimite")
     private Date dateLimite;
 
     @Column(name="participants")
-    private ArrayList <Adherent> listParticipant = new ArrayList<>();
+    private ArrayList <Adherent_avant> listParticipant = new ArrayList<>();
 
 
     public Pari(String objet, int mise, int nbreParticipant, Date dateLimite){
@@ -80,7 +76,7 @@ public class Pari{
         this.dateLimite = dateLimite;
     }
 
-    public ArrayList<Adherent> getListParticipant() {
+    public ArrayList<Adherent_avant> getListParticipant() {
         return listParticipant;
     }
 

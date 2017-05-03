@@ -1,9 +1,9 @@
-package fr.p12.betonline.Model;
+package fr.p12.betonline.beans;
 
 /**
  * Created by zaraki on 03/02/17.
  */
-public class Compte {
+public class Compte_avant {
 
     private String user, password;
     float solde=0;
@@ -34,7 +34,7 @@ public class Compte {
         this.solde = solde;
     }
 
-    public Compte(String user, String password){
+    public Compte_avant(String user, String password){
 
         this.user=user;
         this.password=password;

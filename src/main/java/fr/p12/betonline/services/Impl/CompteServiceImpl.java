@@ -1,7 +1,7 @@
-package fr.p12.betonline.Service.Impl;
+package fr.p12.betonline.services.Impl;
 
 import fr.p12.betonline.beans.Compte_avant;
-import fr.p12.betonline.Service.ServiceInterface.InterfaceCompteService;
+import fr.p12.betonline.services.ServiceInterface.InterfaceCompteService;
 import org.springframework.stereotype.Service;
 
 /**

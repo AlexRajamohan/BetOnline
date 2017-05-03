@@ -1,4 +1,4 @@
-package fr.p12.betonline.Repositories;
+package fr.p12.betonline.repositories;
 
 import fr.p12.betonline.beans.Adherent;
 import org.springframework.data.repository.CrudRepository;

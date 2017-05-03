@@ -1,4 +1,4 @@
-package fr.p12.betonline.Model;
+package fr.p12.betonline.beans;
 
 /**
  * Created by zaraki on 24/03/17.

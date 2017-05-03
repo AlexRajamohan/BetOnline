@@ -76,14 +76,17 @@
 
         <table>
             <thead>
-                <!--/*@thymesVar id="listPari" type="java.util.ArrayList<fr.p12.betonline.Model.Pari>"*/-->
+            <!--/*@thymesVar id="listPari" type="java.util.ArrayList<fr.p12.betonline.beans.Pari_avant>"*/-->
+            <!--/*@thymesVar id="listPari" type="fr.p12.betonline.services.Impl.ListPariImpl"*/-->
 
-                <tr th:class="form-signin" th:each="pari : ${listPari}">
+            <!--/*@thymesVar id="listPari" type="java.lang.Iterable<Pari>"*/-->
 
-                    <th th:class="form-control" th:text="${'Objet : '+pari.getObjet()}"></th>
-                    <th th:class="form-control" th:text="${'Mise : '+pari.getMise()}"></th>
-                    <th th:class="form-control" th:text="${'Participant : '+pari.getNbreParticipant()}"></th>
-                    <th th:class="form-control" th:text="${'Date limite : '+pari.getDateLimite()}"></th>
+                <tr th:class="form-signin" th:each="pariAvant : ${listPari}">
+
+                    <th th:class="form-control" th:text="${'Objet : '+pariAvant.getObjet()}"></th>
+                    <th th:class="form-control" th:text="${'Mise : '+pariAvant.getMise()}"></th>
+                    <th th:class="form-control" th:text="${'Participant : '+pariAvant.getNbreParticipant()}"></th>
+                    <th th:class="form-control" th:text="${'Date limite : '+#dates.format(pariAvant.getDateLimite(), 'dd-MMM-yyyy')}"></th>
 
                 </tr>
             </thead>

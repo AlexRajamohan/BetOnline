@@ -11,7 +11,7 @@
 
     <title>Paris en ligne page d'accueil</title>
 
-    <bootstraptrap core CSS -->
+    <!-- bootstraptrap core CSS -->
     <link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -34,6 +34,7 @@
 </head>
 
 <body>
+<!--/*@thymesVar id="adherent1" type="fr.p12.betonline.beans.Adherent_avant"*/-->
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -49,15 +50,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <!--<li class="active"><a href="log">Sign in <span class="sr-only">(current)</span></a></li>-->
+                <!--<li class="active"> <a th:text="${'Solde : '+adheregetCompteAvantmpte().getSolde()+'Ds'}"><span class="sr-only">(current)</span></a></li>-->
                 <li class="active"><a th:href="@{/accueil}">Sign out <span class="sr-only">(current)</span></a></li>
+
+
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <div class="container">
-    <h1>Espace personel nomAdherent</h1>
+    <h1 th:text="${'Salut '+ session.compteAvant +' !'}" ></h1>
+    <!--<h1 th:text="${'Salut '+ adherent1.getPrenom()+' !'}" ></h1>-->
     <h4>     </h4>
     <h4>    </h4>
 
@@ -72,22 +76,43 @@
      </div>-->
     <div class="jumbotron">
         <h2>Paris en cours</h2>
+
         <!--<div class="container">-->
+
 
         <table>
             <thead>
-            <!--/*@thymesVar id="listPari" type="java.util.ArrayList<fr.p12.betonline.Model.Pari>"*/-->
+            <!--/*@thymesVar id="listPari" type="java.util.ArrayList<fr.p12.betonline.beans.Pari_avant>"*/-->
 
-            <tr th:class="form-signin" th:each="pari : ${listPari}">
+            <tr th:class="form-signin" th:each="pariAvant : ${listPari}">
 
-                <th th:class="form-control" th:text="${'Objet : '+pari.getObjet()}"></th>
-                <th th:class="form-control" th:text="${'Mise : '+pari.getMise()}"></th>
-                <th th:class="form-control" th:text="${'Participant : '+pari.getNbreParticipant()}"></th>
-                <th th:class="form-control" th:text="${'Date limite : '+pari.getDateLimite()}"></th>
+                <th th:class="form-control" th:text="${'Objet : '+pariAvant.getObjet()}"></th>
+                <th th:class="form-control" th:text="${'Mise : '+pariAvant.getMise()}"></th>
+                <th th:class="form-control" th:text="${'Participant : '+pariAvant.getNbreParticipant()}"></th>
+                <th th:class="form-control" th:text="${'Date limite : '+ #dates.format(pariAvant.getDateLimite(), 'dd-MMM-yyyy')}"></th>
+                <!--<th th:class="form-control" th:text="${'Date limite pariAvantpari.getDateLimite()}"></th>-->
+                <th th:class="form-control">
+                    <form th:class="form-control">
+                        <button class="btn btn-lg btn-primary btn-block" type="button" id="buttonMiser" th:id="${pariAvant.getObjet()}">Miser pour</button>
+
+                    </form>
+                    <form th:class="form-control">
+                        <button class="btn btn-lg btn-primary btn-block" type="button" th:id="${pariAvant.getObjet()}">Miser contre</button>
+
+                    </form>
+
+
+                </th>
+                <!--btn btn-lg btn-primary btn-block-->
+
 
             </tr>
             </thead>
         </table>
+
+        <form class="button-parier" th:action="@{/creationPari}" >
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Créer un pariAvant</button>
+        </form>
 
 
     </div>
@@ -129,7 +154,7 @@
 
 
 
-<bootstraptrap core JavaScript
+<!-- bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -137,5 +162,6 @@
 <script src="../../dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
 </body>
 </html>

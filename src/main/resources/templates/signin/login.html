@@ -9,9 +9,9 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Page d</title>
 
-    <bootstraptrap core CSS -->
+    <!-- bootstraptrap core CSS -->
     <link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -76,10 +76,10 @@
 
     <div class="container">
 
-      <form method="get" th:action="@{/logged}" class="form-signin">
+      <form method="post" th:action="@{/logged}" class="form-signin">
         <h2 class="form-signin-heading">Authentification</h2>
         <label for="inputEmail" class="sr-only">E-mail</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Address mail" required="" autofocus="">
+        <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Address mail" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Mot de passe</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
         <div class="checkbox">

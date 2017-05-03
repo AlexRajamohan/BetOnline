@@ -1,7 +1,7 @@
-package fr.p12.betonline.Model;
+package fr.p12.betonline.beans;
 
 
-import fr.p12.betonline.Service.ServiceInterface.InterfaceCompteService;
+import fr.p12.betonline.services.ServiceInterface.InterfaceCompteService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -10,14 +10,14 @@ import java.util.Date;
  * Created by zaraki on 24/02/17.
  */
 
-public class Adherent extends System {
+public class Adherent_avant extends System {
 
     private String login, password, nom, prenom;
 
     @Autowired
     private InterfaceCompteService interfaceCompteService;
 
-    private Compte compte=new Compte(login, password);
+    private Compte_avant compteAvant =new Compte_avant(login, password);
 
     protected System system;
 
@@ -49,12 +49,12 @@ public class Adherent extends System {
         this.prenom = prenom;
     }
 
-    public Compte getCompte() {
-        return compte;
+    public Compte_avant getCompteAvant() {
+        return compteAvant;
     }
 
-    public void setCompte(Compte compte) {
-        this.compte = compte;
+    public void setCompteAvant(Compte_avant compteAvant) {
+        this.compteAvant = compteAvant;
     }
 
     public String getLogin() {
@@ -65,27 +65,27 @@ public class Adherent extends System {
         this.login = login;
     }
 
-    public Adherent(String nom, String prenom, Compte compte){
+    public Adherent_avant(String nom, String prenom, Compte_avant compteAvant){
         super();
         this.nom=nom;
         this.prenom=prenom;
-        this.compte=compte;
+        this.compteAvant = compteAvant;
     }
     public void crediterCompte(Float montant){
 
-//        interfaceCompteService.crediter(this.compte, montant);
-        compte.crediter(montant);
+//        interfaceCompteService.crediter(this.compteAvant, montant);
+        compteAvant.crediter(montant);
 
     }
 
     public void debiterCompte(Float montant){
-//        interfaceCompteService.debiter(this.compte, montant);
+//        interfaceCompteService.debiter(this.compteAvant, montant);
 
-        compte.debiter(montant);
+        compteAvant.debiter(montant);
     }
 
     public void creerPari(String objet, int mise, int nbreParticipant, Date dateLimite){
-        new Pari(objet,mise,nbreParticipant,dateLimite);
+        new Pari_avant(objet,mise,nbreParticipant,dateLimite);
     }
 
 

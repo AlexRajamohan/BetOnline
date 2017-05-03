@@ -1,8 +1,7 @@
-package fr.p12.betonline.Model;
+package fr.p12.betonline.beans;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**

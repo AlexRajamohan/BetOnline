@@ -1,11 +1,11 @@
-package fr.p12.betonline.Service.Impl;
+package fr.p12.betonline.services.Impl;
 
-import fr.p12.betonline.Repositories.AdherentRepository;
+import fr.p12.betonline.repositories.AdherentRepository;
 import fr.p12.betonline.beans.Adherent;
 import fr.p12.betonline.beans.Compte;
 import fr.p12.betonline.beans.Pari;
-import fr.p12.betonline.repositories.AdherentRepository;
 import fr.p12.betonline.services.ServiceInterface.AdherentService;
+import fr.p12.betonline.services.ServiceInterface.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,8 @@ import java.util.Date;
 public class AdherentImpl implements AdherentService{
 
     private AdherentRepository adherentRepository;
-    private Compte compte= new Compte()
+    private CompteService compteService;
+//    private Compte compte;
 
     @Autowired
     public void setAdherentRepository(AdherentRepository adherentRepository) {
@@ -34,7 +35,7 @@ public class AdherentImpl implements AdherentService{
 
     @Override
     public Adherent getAdherentById(String email) {
-        return AdherentRepository.findOne(email);
+        return adherentRepository.findOne(email);
     }
 
     @Override
@@ -51,12 +52,12 @@ public class AdherentImpl implements AdherentService{
     /*-------*/
 
     public void crediterCompte(Float montant){
-        compte.crediter(montant);
+        compteService.crediter(montant);
 
     }
 
     public void debiterCompte(Float montant){
-        compte.debiter(montant);
+        compteService.debiter(montant);
     }
 
     public void creerPari(String objet, int mise, int nbreParticipant, Date dateLimite){

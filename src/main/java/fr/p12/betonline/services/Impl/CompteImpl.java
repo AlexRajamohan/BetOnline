@@ -1,4 +1,4 @@
-package fr.p12.betonline.Service.Impl;
+package fr.p12.betonline.services.Impl;
 
 import fr.p12.betonline.beans.Compte;
 import fr.p12.betonline.repositories.CompteRepository;
@@ -14,45 +14,48 @@ import org.springframework.stereotype.Service;
 public class CompteImpl implements CompteService{
 
     private CompteRepository compteRepository;
+    private Compte compte;
 
     @Autowired
     public void setCompteRepository(CompteRepository compteRepository) {
         this.compteRepository = compteRepository;
     }
 
-    @Override
+
     public Iterable <Compte> listAllComptes() {
         return compteRepository.findAll();
     }
 
 
-    @Override
+
     public Compte getCompteById(String email) {
         return compteRepository.findOne(email);
     }
 
-    @Override
+
     public Compte saveCompte(Compte compte) {
         return compteRepository.save(compte);
     }
 
 
-    @Override
+
     public void deleteCompte(String email) {
         compteRepository.delete(email);
     }
 
+
     public void crediter(float montant) {
 
-//        compte.setSolde(compte.getSolde()+montant);
-        this.solde=this.solde+montant;
+        compte.setSolde(compte.getSolde()+montant);
+//        this.solde=this.solde+montant;
     }
 
 
     public void debiter( float montant) {
 //        compte.setSolde(compte.getSolde()-montant);
 //        this.solde=this.solde-montant;
-        compteRepository.
+        compte.setSolde(compte.getSolde()-montant);
+
 
     }
 

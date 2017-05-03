@@ -1,7 +1,7 @@
-package fr.p12.betonline.Service.Impl;
+package fr.p12.betonline.services.Impl;
 
 import fr.p12.betonline.beans.Pari_avant;
-import fr.p12.betonline.Service.ServiceInterface.InterfaceListPariService;
+import fr.p12.betonline.services.ServiceInterface.InterfaceListPariService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

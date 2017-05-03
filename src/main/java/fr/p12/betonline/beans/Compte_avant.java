@@ -30,9 +30,9 @@ public class Compte {
     }
 
     //Le solde est modifiable uniquement en creditant ou debitant son compte
-//    public void setSolde(float solde) {
-//        this.solde = solde;
-//    }
+    public void setSolde(float solde) {
+        this.solde = solde;
+    }
 
     public Compte(String user, String password){
 
@@ -40,20 +40,18 @@ public class Compte {
         this.password=password;
     }
 
-    public boolean authentification (String identifiant, String mdp){
-        if (identifiant==user && mdp==password){
-            return (true);
-        }
-        else{
-            return(false);
-        }
-    }
 
-    public void crediter(float montant){
+    public void crediter(float montant) {
+
+//        compte.setSolde(compte.getSolde()+montant);
         this.solde=this.solde+montant;
     }
 
-    public void debiter(float montant){
+
+    public void debiter( float montant) {
+//        compte.setSolde(compte.getSolde()-montant);
         this.solde=this.solde-montant;
+
     }
+
 }

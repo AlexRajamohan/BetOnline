@@ -1,3 +1,4 @@
+/*
 package fr.p12.betonline.Service.Impl;
 
 import fr.p12.betonline.Model.Adherent;
@@ -6,24 +7,26 @@ import fr.p12.betonline.Model.Pari;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+*/
 /**
  * Created by zaraki on 24/02/17.
- */
+ *//*
+
 public class ListAdherentImpl {
 
 //    protected HashMap<String, Object> list=new HashMap<>();
-    protected ArrayList<Adherent> listAdherent;
+    protected ArrayList<Adherent_avant> listAdherent;
 
 
 //    public HashMap<String, Object> getList() {
 //        return list;
 //    }
-    public ArrayList<Adherent> getListAdherent() {
+    public ArrayList<Adherent_avant> getListAdherent() {
         return listAdherent;
     }
 
 
-    public boolean addAdherent(Adherent adherent){
+    public boolean addAdherent(Adherent_avant adherent){
 
 
 //        list.put("adherent", listAdherent.add(adherent));
@@ -44,10 +47,10 @@ public class ListAdherentImpl {
         else {return false;}
     }
 
-    public boolean contains(Adherent adherent){
+    public boolean contains(Adherent_avant adherent){
 
         boolean contains=false;
-        for(Adherent a : listAdherent){
+        for(Adherent_avant a : listAdherent){
             if(a.equals(adherent)){
 
                 contains=true;
@@ -56,3 +59,4 @@ public class ListAdherentImpl {
         return contains;
     }
 }
+*/

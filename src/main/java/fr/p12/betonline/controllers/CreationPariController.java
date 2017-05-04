@@ -22,12 +22,13 @@ import java.util.Date;
 @Controller
 public class CreationPariController {
 
+    @Autowired
     private PariService pariService;
-
+/*
     @Autowired
     public void setPariService(PariService pariService) {
         this.pariService = pariService;
-    }
+    }*/
 
 /*    //CREATE
     @RequestMapping("pari/new")

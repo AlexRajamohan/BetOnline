@@ -82,15 +82,16 @@
 
         <table>
             <thead>
-            <!--/*@thymesVar id="listPari" type="java.util.ArrayList<fr.p12.betonline.beans.Pari_avant>"*/-->
+            <!--/*@thymesVar id="listPari" type="java.lang.Iterable<Pari>"*/-->
 
-            <tr th:class="form-signin" th:each="pariAvant : ${listPari}">
+
+           <!-- <tr th:class="form-signin" th:each="pariAvant : ${listPari}">
 
                 <th th:class="form-control" th:text="${'Objet : '+pariAvant.getObjet()}"></th>
                 <th th:class="form-control" th:text="${'Mise : '+pariAvant.getMise()}"></th>
                 <th th:class="form-control" th:text="${'Participant : '+pariAvant.getNbreParticipant()}"></th>
                 <th th:class="form-control" th:text="${'Date limite : '+ #dates.format(pariAvant.getDateLimite(), 'dd-MMM-yyyy')}"></th>
-                <!--<th th:class="form-control" th:text="${'Date limite pariAvantpari.getDateLimite()}"></th>-->
+                &lt;!&ndash;<th th:class="form-control" th:text="${'Date limite pariAvantpari.getDateLimite()}"></th>&ndash;&gt;
                 <th th:class="form-control">
                     <form th:class="form-control">
                         <button class="btn btn-lg btn-primary btn-block" type="button" id="buttonMiser" th:id="${pariAvant.getObjet()}">Miser pour</button>
@@ -98,6 +99,32 @@
                     </form>
                     <form th:class="form-control">
                         <button class="btn btn-lg btn-primary btn-block" type="button" th:id="${pariAvant.getObjet()}">Miser contre</button>
+
+                    </form>
+
+
+                </th>
+                &lt;!&ndash;btn btn-lg btn-primary btn-block&ndash;&gt;
+
+
+            </tr>
+            </thead>
+        </table>
+
+--> <tr th:class="form-signin" th:each="pari : ${listPari}">
+
+                <th th:class="form-control" th:text="${'Objet : '+pari.getObjet()}"></th>
+                <th th:class="form-control" th:text="${'Mise : '+pari.getMise()}"></th>
+                <th th:class="form-control" th:text="${'Participant : '+pari.getNbreParticipant()}"></th>
+                <th th:class="form-control" th:text="${'Date limite : '+ #dates.format(pari.getDateLimite(), 'dd-MMM-yyyy')}"></th>
+                <!--<th th:class="form-control" th:text="${'Date limite pariAvantpari.getDateLimite()}"></th>-->
+                <th th:class="form-control">
+                    <form th:class="form-control">
+                        <button class="btn btn-lg btn-primary btn-block" type="button" id="buttonMiser" th:id="${pari.getObjet()}">Miser pour</button>
+
+                    </form>
+                    <form th:class="form-control">
+                        <button class="btn btn-lg btn-primary btn-block" type="button" th:id="${pari.getObjet()}">Miser contre</button>
 
                     </form>
 
@@ -111,7 +138,7 @@
         </table>
 
         <form class="button-parier" th:action="@{/creationPari}" >
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Créer un pariAvant</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Créer un pari</button>
         </form>
 
 

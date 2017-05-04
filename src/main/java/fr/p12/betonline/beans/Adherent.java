@@ -36,6 +36,7 @@ public class Adherent{
 
     public Adherent(String email, String password, String nom, String prenom, Compte compte){
         this.email=email;
+        this.password=password;
         this.nom=nom;
         this.prenom=prenom;
         this.compte=compte;

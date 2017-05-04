@@ -33,6 +33,8 @@ public class Pari{
     private ArrayList <Adherent_avant> listParticipant = new ArrayList<>();
 
 
+    public Pari(){}
+
     public Pari(String objet, int mise, int nbreParticipant, Date dateLimite){
         super();
         this.objet=objet;

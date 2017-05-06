@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Inscription valide</title>
+    <title>Page d</title>
 
     <!-- bootstraptrap core CSS -->
     <link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,8 +31,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
+
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -48,21 +48,50 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a th:href="@{log}">Sign in <span class="sr-only">(current)</span></a></li>
-                <!--<li class="active"><a th:href="@{inscription}">Sign out <span class="sr-only">(current)</span></a></li>-->
+
+                <li class="active"><a th:href="@{/accueil}">Sign out <span class="sr-only">(current)</span></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
-<!--<div class="container">-->
-    <div class="container">
+<div class="container">
 
-        <!--/*@thymesVar id="adherent" type="Adherent"*/-->
-        <h1 th:text="${'Bienvenu '+ adherent.getPrenom()+'! Connectez-vous pour accéder à votre espace personel. '  }"></h1>
-    </div>
+    <form method="post" th:action="@{/transactionEffectue}" class="form-signin">
+        <h2 class="form-signin-heading">Que voulez-vous faire ?</h2>
+        <input type="hidden" name="valeurSession" th:value="${session.adherent.getEmail()}">
 
-<!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+
+        <table>
+            <tbody><tr>
+                <td>
+                    <select name="choixTransaction">
+                        <option >Créditer votre compte BetOnline</option>
+                        <option>Débiter votre compte Betonline </option>
+
+
+                    </select>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <label for="inputMontant" class="sr-only">Montant</label>
+        <input type="number" id="inputMontant" name="inputMontant" class="form-control" placeholder="Montant (Ds)" required="" autofocus="">
+
+        <div class="checkbox">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Effectuer la transaction</button>
+
+        <script language="JavaScript">
+            function login() {
+
+            }
+        </script>
+    </form>
+
+</div> <!-- /container -->
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

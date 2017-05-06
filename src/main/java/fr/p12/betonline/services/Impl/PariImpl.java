@@ -22,7 +22,7 @@ public class PariImpl implements PariService {
 //    private Compte compte;
 
     @Autowired
-    public void setPariRepository(PariRepository pariRepository) {
+    public void setPariRepository(PariRepository pariRepository ) {
         this.pariRepository = pariRepository;
     }
 
@@ -49,7 +49,7 @@ public class PariImpl implements PariService {
     }
 
     @Override
-    public boolean addAdherent(Adherent adherent) {
+    public boolean addAdherent(Adherent adherent/*, boolean pour*/) {
         return false;
     }
 

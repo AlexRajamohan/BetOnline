@@ -59,15 +59,13 @@ public class InscriptionController {
                                                @RequestParam String inputPassword,
                                                Model model){
 
-//        Compte compte= new Compte(inputEmail, inputPassword);
-        Adherent adherent=new Adherent(inputEmail, inputPassword, inputName, inputPrenom,new Compte(inputEmail, inputPassword));
+        Compte compte= new Compte(inputEmail, inputPassword);
+        Adherent adherent=new Adherent(inputEmail, inputPassword, inputName, inputPrenom,compte);
         model.addAttribute("adherent", adherent);
-//        model.addAttribute("compte", compte);
-
-        System.out.println(adherent.getCompte().getPassword());
+        model.addAttribute("compte", compte);
 
         adherentService.saveAdherent(adherent);
-//        compteService.saveCompte(compte);
+        compteService.saveCompte(compte);
 
         return "inscription/inscriptionValide";
     }

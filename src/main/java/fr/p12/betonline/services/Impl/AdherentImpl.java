@@ -51,14 +51,8 @@ public class AdherentImpl implements AdherentService{
 
     /*-------*/
 
-    public void crediterCompte(Float montant){
-        compteService.crediter(montant);
 
-    }
 
-    public void debiterCompte(Float montant){
-        compteService.debiter(montant);
-    }
 
     public void creerPari(String objet, int mise, int nbreParticipant, Date dateLimite){
         new Pari(objet,mise,nbreParticipant,dateLimite);

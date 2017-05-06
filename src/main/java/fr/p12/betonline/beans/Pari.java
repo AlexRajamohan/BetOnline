@@ -29,8 +29,13 @@ public class Pari{
     @Column(name="dateLimite")
     private Date dateLimite;
 
-    @Column(name="participants")
-    private ArrayList <Adherent_avant> listParticipant = new ArrayList<>();
+    @Column(name="participantsPour")
+    private ArrayList <Adherent> listParticipantPour = new ArrayList<>();
+
+
+
+    @Column(name="participantsContre")
+    private ArrayList <Adherent> listParticipantContre = new ArrayList<>();
 
 
     public Pari(){}
@@ -78,10 +83,21 @@ public class Pari{
         this.dateLimite = dateLimite;
     }
 
-    public ArrayList<Adherent_avant> getListParticipant() {
-        return listParticipant;
+    public ArrayList<Adherent> getListParticipantPour() {
+        return listParticipantPour;
     }
 
+    public void setListParticipantPour(ArrayList<Adherent> listParticipantPour) {
+        this.listParticipantPour = listParticipantPour;
+    }
+
+    public ArrayList<Adherent> getListParticipantContre() {
+        return listParticipantContre;
+    }
+
+    public void setListParticipantContre(ArrayList<Adherent> listParticipantContre) {
+        this.listParticipantContre = listParticipantContre;
+    }
 
 
 

@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+//import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.System;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,42 +59,79 @@ public class ConnexionController {
     @RequestMapping(value = "/logged", method = RequestMethod.POST)
     public String displayAccountPage(@RequestParam(value = "inputEmail") String inputEmail,
                                      @RequestParam(value = "inputPassword") String inputPassword,
-                                     HttpServletRequest request){
+                                     HttpServletRequest request,
+                                     Model model){
+
+/*        Jedis jedis = new Jedis("localhost");
+        jedis.set("foo", "bar");
+        String value = jedis.get("foo");*/
 
 
-        String pageDeRetour="log";
+        Iterable<Pari> listPari= pariService.listAllParis();
+        model.addAttribute("listPari", listPari);
+
+        String pageDeRetour="";
         Iterable<Adherent> listAdherents= adherentService.listAllAdherents();
         for (Adherent a : listAdherents){
             if(a.getEmail().equals(inputEmail) && a.getPassword().equals(inputPassword)){
 
-                request.getSession().setAttribute("adherent", a);
-                pageDeRetour="redirect:/logged";
+//                request.getSession().setAttribute("adherent", a);
+                pageDeRetour="signin/myAccount";
+//                pageDeRetour="redirect:/logged";
 
             }
-            else pageDeRetour= "log";
+            else pageDeRetour= "redirect:/log";
+
+            request.getSession().setAttribute("adherent", a);
 
         }
 
 
+
         return pageDeRetour;
 
-
-
-
-
-//        return "signin/login";
     }
 
-    @RequestMapping(value = "/logged", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/transaction")
+    public String displayFormTransactionPage(){
+        return "signin/formTransaction";
+    }
+
+
+    @RequestMapping(value = "/transactionEffectue")
+    public String displayAccountPage(@RequestParam String choixTransaction,
+                                     @RequestParam String inputMontant,
+                                     HttpServletRequest request,
+                                     @RequestParam String valeurSession){
+
+        Adherent adherent=adherentService.getAdherentById(valeurSession);
+
+        if(choixTransaction.equals("Créditer votre compte BetOnline")){
+            adherent.crediterCompte(Float.valueOf(inputMontant));
+            System.out.println(adherent.getCompte().getSolde());
+
+
+        }
+        else adherent.debiterCompte(Float.valueOf(inputMontant));
+        adherentService.saveAdherent(adherent);
+        compteService.saveCompte(adherent.getCompte());
+
+//        return "signin/myAccount";
+
+        return "redirect:/logged{"/********************************A FAIRE ***********************************/
+    }
+
+  /*  @RequestMapping(value = "/logged", method = RequestMethod.GET)
     public String displayAccountPage(Model model,
                                      HttpServletRequest request){
 
- /*       model.addAttribute("tags", Arrays.asList(Constants.tags));
+ *//*       model.addAttribute("tags", Arrays.asList(Constants.tags));
         System.out.println(testMsg);
 
-        System.out.println(inputDate);*/
+        System.out.println(inputDate);*//*
 
-/*        String compteCourant=request.getSession().getAttribute("compte").toString();
+*//*        String compteCourant=request.getSession().getAttribute("compte").toString();
 
         System.out.println(compteCourant);
         System.out.println(listAdherentAvant.size());
@@ -105,7 +144,7 @@ public class ConnexionController {
         }
 
         model.addAttribute("session", request.getSession().getAttribute("compte"));
-        model.addAttribute("listPariAvant", listPariAvant);*/
+        model.addAttribute("listPariAvant", listPariAvant);*//*
 
 //        Adherent adherent=request.getSession().getAttribute("adherent");
 
@@ -119,7 +158,7 @@ public class ConnexionController {
 
         return "signin/myAccount";
 
-    }
+    }*/
 
 
 

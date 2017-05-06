@@ -44,19 +44,6 @@ public class CompteImpl implements CompteService{
     }
 
 
-    public void crediter(float montant) {
 
-        compte.setSolde(compte.getSolde()+montant);
-//        this.solde=this.solde+montant;
-    }
-
-
-    public void debiter( float montant) {
-//        compte.setSolde(compte.getSolde()-montant);
-//        this.solde=this.solde-montant;
-        compte.setSolde(compte.getSolde()-montant);
-
-
-    }
 
 }

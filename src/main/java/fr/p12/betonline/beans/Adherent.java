@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by zaraki on 24/02/17.
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="adherent")
-public class Adherent{
+public class Adherent implements Serializable {
 
 
 
@@ -87,6 +88,14 @@ public class Adherent{
         this.email = email;
     }
 
+    public void crediterCompte(Float montant){
+        compte.crediter(montant);
+
+    }
+
+    public void debiterCompte(Float montant){
+        compte.debiter(montant);
+    }
 
 
 

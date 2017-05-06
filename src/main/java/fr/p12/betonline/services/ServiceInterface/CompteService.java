@@ -15,8 +15,8 @@ public interface CompteService {
 
     void deleteCompte(String email);
 
-    public void crediter(float montant);
+/*    public void crediter(float montant);
 
 
-    public void debiter( float montant);
+    public void debiter( float montant);*/
 }

@@ -2,6 +2,8 @@ package fr.p12.betonline;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.session.SessionAutoConfiguration;
+//import redis.clients.jedis.Jedis;
 
 import java.text.ParseException;
 
@@ -11,7 +13,15 @@ public class BetOnlineApplication {
 	public static void main(String[] args) throws ParseException {
 
 		SpringApplication.run(BetOnlineApplication.class, args);
-		;
+
+
+
+
+	}
+
+}
+
+
 //		System.out.println(adherent.getSystem().getList());
 
 		/*Compte_avant c1=new Compte_avant("alex@gmail.com","zaraki");
@@ -34,6 +44,3 @@ public class BetOnlineApplication {
 		System.out.println(shortDateFormat.format(aujd));
 
 */
-	}
-
-}

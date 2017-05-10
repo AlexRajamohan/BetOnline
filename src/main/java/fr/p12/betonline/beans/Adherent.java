@@ -1,6 +1,11 @@
 package fr.p12.betonline.beans;
 
 
+import fr.p12.betonline.services.ServiceInterface.AdherentService;
+import fr.p12.betonline.services.ServiceInterface.CompteService;
+import fr.p12.betonline.services.ServiceInterface.PariService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,6 +38,7 @@ public class Adherent implements Serializable {
 
     @Column(name="compte")
     private Compte compte=new Compte(email, password);
+
 
 
     public Adherent(String email, String password, String nom, String prenom, Compte compte){
@@ -98,5 +104,59 @@ public class Adherent implements Serializable {
     }
 
 
+/*    public boolean participe(Pari pari){
 
+        boolean exist=false;
+        for (Adherent a : pari.getListParticipantPour()) {
+            for (Adherent ad : pari.getListParticipantContre()){
+                if (this.equals(a)) {
+                    exist = true;
+                }else if (this.equals(ad)){
+                    exist=true;
+                }
+            }
+
+        }
+*//*        for (Adherent ad : pari.getListParticipantContre()) {
+            if (this.equals(ad)) {
+                exist = true;
+            }
+        }*//*
+            return exist;
+    }*/
+
+    public boolean participe(Pari pari){
+
+        if(this.containedPour(pari)==false && this.containedContre(pari)==false){
+            return  false;
+
+        }else return true;
+
+
+
+    }
+
+    public boolean containedPour(Pari pari){
+
+        boolean contained=false;
+        for (Adherent a : pari.getListParticipantPour()){
+            if(this.equals(a)){
+                contained=true;
+            }
+        }
+        return contained;
+
+    }
+
+    public boolean containedContre(Pari pari){
+
+        boolean contained=false;
+        for (Adherent a : pari.getListParticipantPour()){
+            if(this.equals(a)){
+                contained=true;
+            }
+        }
+        return contained;
+    }
 }
+

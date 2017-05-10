@@ -23,19 +23,23 @@ public class Pari{
     @Column(name="mise")
     private int mise;
 
-    @Column(name="nbreMaxParticipant")
+    @Column(name="nbre_max_participant")
     private int nbreParticipant;
 
-    @Column(name="dateLimite")
+    @Column(name="date_limite")
     private Date dateLimite;
 
-    @Column(name="participantsPour")
-    private ArrayList <Adherent> listParticipantPour = new ArrayList<>();
+    @Column(name="participants_pour")
+    private ArrayList <Adherent> listParticipantPour = new ArrayList<Adherent>();
 
 
 
-    @Column(name="participantsContre")
-    private ArrayList <Adherent> listParticipantContre = new ArrayList<>();
+    @Column(name="participants_contre")
+    private ArrayList <Adherent> listParticipantContre = new ArrayList<Adherent>();
+
+
+    @Column(name = "resultat")
+    private boolean resultat;
 
 
     public Pari(){}
@@ -97,6 +101,15 @@ public class Pari{
 
     public void setListParticipantContre(ArrayList<Adherent> listParticipantContre) {
         this.listParticipantContre = listParticipantContre;
+    }
+
+
+    public boolean isResultat() {
+        return resultat;
+    }
+
+    public void setResultat(boolean resultat) {
+        this.resultat = resultat;
     }
 
 

@@ -1,7 +1,7 @@
 package fr.p12.betonline.controllers;
 
 import fr.p12.betonline.beans.Pari;
-import fr.p12.betonline.beans.Pari_avant;
+//import fr.p12.betonline.beans.Pari_avant;
 import fr.p12.betonline.services.ServiceInterface.PariService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

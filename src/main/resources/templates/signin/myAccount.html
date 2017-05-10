@@ -53,7 +53,7 @@
                 <li class="active"> <a th:text="${'Solde : '+session.adherent.getCompte().getSolde()+'Ds'}"><span class="sr-only">(current)</span></a></li>
                 <li class="active"> <a th:href="@{/transaction}" th:text="${'Créditer ou débiter votre compte'}"><span class="sr-only">(current)</span></a></li>
                 <!--<li class="active"> <a th:text="${'Débiter votre compte'}"><span class="sr-only">(current)</span></a></li>-->
-                <li class="active"><a th:href="@{/accueil}">Sign out <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a th:href="@{/logout}">Se déconnecter <span class="sr-only">(current)</span></a></li>
 
 
             </ul>
@@ -67,15 +67,7 @@
     <h4>     </h4>
     <h4>    </h4>
 
-    <!-- <div class="dropdown">
-         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-             <span class="caret"></span></button>
-         <ul class="dropdown-menu">
-             <li><a href="#">HTML</a></li>
-             <li><a href="#">CSS</a></li>
-             <li><a href="#">JavaScript</a></li>
-         </ul>
-     </div>-->
+
     <div class="jumbotron">
         <h2>Paris en cours</h2>
 
@@ -88,52 +80,54 @@
             <!--/*@thymesVar id="listPari" type="java.lang.Iterable<Pari>"*/-->
 
 
-           <!-- <tr th:class="form-signin" th:each="pariAvant : ${listPari}">
-
-                <th th:class="form-control" th:text="${'Objet : '+pariAvant.getObjet()}"></th>
-                <th th:class="form-control" th:text="${'Mise : '+pariAvant.getMise()}"></th>
-                <th th:class="form-control" th:text="${'Participant : '+pariAvant.getNbreParticipant()}"></th>
-                <th th:class="form-control" th:text="${'Date limite : '+ #dates.format(pariAvant.getDateLimite(), 'dd-MMM-yyyy')}"></th>
-                &lt;!&ndash;<th th:class="form-control" th:text="${'Date limite pariAvantpari.getDateLimite()}"></th>&ndash;&gt;
-                <th th:class="form-control">
-                    <form th:class="form-control">
-                        <button class="btn btn-lg btn-primary btn-block" type="button" id="buttonMiser" th:id="${pariAvant.getObjet()}">Miser pour</button>
-
-                    </form>
-                    <form th:class="form-control">
-                        <button class="btn btn-lg btn-primary btn-block" type="button" th:id="${pariAvant.getObjet()}">Miser contre</button>
-
-                    </form>
-
-
-                </th>
-                &lt;!&ndash;btn btn-lg btn-primary btn-block&ndash;&gt;
-
-
-            </tr>
-            </thead>
-        </table>
-
---> <tr th:class="form-signin" th:each="pari : ${listPari}">
+            <tr th:class="form-signin" th:each="pari : ${listPari}">
 
                 <th th:class="form-control" th:text="${'Objet : '+pari.getObjet()}"></th>
                 <th th:class="form-control" th:text="${'Mise : '+pari.getMise()}"></th>
                 <th th:class="form-control" th:text="${'Participant : '+pari.getNbreParticipant()}"></th>
                 <th th:class="form-control" th:text="${'Date limite : '+ #dates.format(pari.getDateLimite(), 'dd-MMM-yyyy')}"></th>
-                <!--<th th:class="form-control" th:text="${'Date limite pariAvantpari.getDateLimite()}"></th>-->
                 <th th:class="form-control">
-                    <form th:class="form-control">
-                        <button class="btn btn-lg btn-primary btn-block" type="button" id="buttonMiser" th:id="${pari.getObjet()}">Miser pour</button>
+                    <form th:class="form-control" th:action="@{/miser/miserPour}" method="get">
+                        <input th:type="hidden" name="valeurSession" th:value="${session.adherent.getEmail()}">
+                        <input th:type="hidden" name="valeurPari" th:value="${pari.getObjet()}">
+
+                        <button th:if="${!session.adherent.participe(pari)}"  class="btn btn-lg btn-primary btn-block" type="submit" >Miser pour</button>
+                        <button th:if="${session.adherent.participe(pari)}" disabled="disabled"class="btn btn-lg btn-primary btn-block" type="submit" >Miser pour</button>
 
                     </form>
-                    <form th:class="form-control">
-                        <button class="btn btn-lg btn-primary btn-block" type="button" th:id="${pari.getObjet()}">Miser contre</button>
+
+                </th>
+                <th th:class="form-control">
+
+                    <form th:class="form-control" th:action="@{/miser/miserContre}" method="get">
+                        <input th:type="hidden" name="valeurSession" th:value="${session.adherent.getEmail()}">
+                        <input th:type="hidden" name="valeurPari" th:value="${pari.getObjet()}">
+
+                        <button th:if="${!session.adherent.participe(pari)}"  class="btn btn-lg btn-primary btn-block" type="submit"  >Miser contre</button>
+                        <button th:if="${session.adherent.participe(pari)}" disabled="disabled" class="btn btn-lg btn-primary btn-block" type="submit"  >Miser contre</button>
 
                     </form>
 
 
                 </th>
-                <!--btn btn-lg btn-primary btn-block-->
+
+                <th th:class="form-control">
+
+
+
+
+                    <form th:class="form-control" th:action="@{/resultat}" method="post">
+                        <input th:type="hidden" name="valeurSession" th:value="${session.adherent.getEmail()}">
+                        <input th:type="hidden" name="valeurPari" th:value="${pari.getObjet()}">
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit"  >Résultat</button>
+                        <!--<button th:if="${!session.adherent.participe(pari)}"  class="btn btn-lg btn-primary btn-block" type="submit"  >Miser contre</button>
+                        <button th:if="${session.adherent.participe(pari)}" disabled="disabled" class="btn btn-lg btn-primary btn-block" type="submit"  >Miser contre</button>
+-->
+                    </form>
+
+
+                </th>
 
 
             </tr>

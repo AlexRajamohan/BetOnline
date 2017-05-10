@@ -59,7 +59,8 @@
     <div class="container">
 
         <!--/*@thymesVar id="adherent" type="Adherent"*/-->
-        <h1 th:text="${'Bienvenu '+ adherent.getPrenom()+'! Connectez-vous pour accéder à votre espace personel. '  }"></h1>
+        <h1 th:text="${'Bienvenue '+ session.adherent.getPrenom()+' ! Connectez-vous pour accéder à votre espace personel. '  }"></h1>
+        <!--<h1 th:text="${'Bienvenu '+ adherent.getPrenom()+' ! Connectez-vous pour accéder à votre espace personel. '  }"></h1>-->
     </div>
 
 <!--</div> &lt;!&ndash; /container &ndash;&gt;-->

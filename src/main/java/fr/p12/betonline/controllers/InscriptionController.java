@@ -1,9 +1,9 @@
 package fr.p12.betonline.controllers;
 
 import fr.p12.betonline.beans.Adherent;
-import fr.p12.betonline.beans.Adherent_avant;
+//import fr.p12.betonline.beans.Adherent_avant;
 import fr.p12.betonline.beans.Compte;
-import fr.p12.betonline.beans.Compte_avant;
+//import fr.p12.betonline.beans.Compte_avant;
 import fr.p12.betonline.services.ServiceInterface.AdherentService;
 import fr.p12.betonline.services.ServiceInterface.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by audre on 02/05/2017.
@@ -52,22 +54,31 @@ public class InscriptionController {
     }*/
 
 
-    @RequestMapping(value = "/inscriptionValide")
+    @RequestMapping(value = "/inscriptionValide", method = RequestMethod.POST)
     public String displayInscriptionValidePage(@RequestParam String inputName,
                                                @RequestParam String inputPrenom,
                                                @RequestParam String inputEmail,
                                                @RequestParam String inputPassword,
-                                               Model model){
+                                               Model model,
+                                               HttpServletRequest request){
 
-        Compte compte= new Compte(inputEmail, inputPassword);
-        Adherent adherent=new Adherent(inputEmail, inputPassword, inputName, inputPrenom,compte);
-        model.addAttribute("adherent", adherent);
-        model.addAttribute("compte", compte);
 
-        adherentService.saveAdherent(adherent);
-        compteService.saveCompte(compte);
 
-        return "inscription/inscriptionValide";
+        if(adherentService.getAdherentById(inputEmail)==null){
+            Compte compte= new Compte(inputEmail, inputPassword);
+            Adherent adherent=new Adherent(inputEmail, inputPassword, inputName, inputPrenom,compte);
+            model.addAttribute("adherent", adherent);
+            model.addAttribute("compte", compte);
+
+            adherentService.saveAdherent(adherent);
+            compteService.saveCompte(compte);
+            request.getSession().setAttribute("adherent", adherent);
+
+            return "inscription/inscriptionValide";
+        }
+        else return "redirect:/inscription";
+
+
     }
 
 

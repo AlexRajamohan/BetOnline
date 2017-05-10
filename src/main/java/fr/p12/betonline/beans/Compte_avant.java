@@ -1,8 +1,11 @@
+/*
 package fr.p12.betonline.beans;
 
+*/
 /**
  * Created by zaraki on 03/02/17.
- */
+ *//*
+
 public class Compte_avant {
 
     private String user, password;
@@ -55,3 +58,4 @@ public class Compte_avant {
     }
 
 }
+*/

@@ -67,7 +67,7 @@
        <ul class="nav navbar-nav navbar-right">
            <li><a href="../navbar/">Default</a></li>
            <li><a href="../navbar-static-top/">Static top</a></li>-->
-          <li class="active"><a th:href="@{/accueil}">Sign out <span class="sr-only">(current)</span></a></li>
+          <li class="active"><a th:href="@{/logout}">Sign out <span class="sr-only">(current)</span></a></li>
           <!--<li class="active"><a th:href="@{inscription}">Sign out <span class="sr-only">(current)</span></a></li>-->
         </ul>
       </div><!--/.nav-collapse -->
@@ -76,7 +76,7 @@
 
     <div class="container">
 
-      <form method="get" th:action="@{/pariCree}" class="form-signin">
+      <form method="post" th:action="@{/pariCree}" class="form-signin"><!--get-->
         <h2 class="form-signin-heading">Création de pari</h2>
         <input type="text" name="inputObjetPari" class="form-control" placeholder="Objet du pari" required="" autofocus="">
         <input type="number" name="inputMisePari" class="form-control" placeholder="Mise du pari (Ducats)" required="" autofocus="" min="1">
@@ -91,51 +91,11 @@
 
 
 
-        <!--<table>
-          <tbody><tr>
-            <td>Date  </td>
-            <td>
-              <select name="dateJour" required="">
-
-                <option th:text="jj" >
-                <option >01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-
-              </select>
-
-              <select name="dateMoi">
-
-                <option value="0" th:text="mm" >
-                <option >01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-
-              </select>
-
-              <select name="dateAnnee">
-
-                <option value="0" th:text="aaaa" >
-                <option >01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-
-              </select>
-            </td>
-          </tr>
-
-          </tbody>
-        </table>
--->
-
         <div class="checkbox">
           <label>
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Valider pariAvant</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Valider pari</button>
 
       </form>
 

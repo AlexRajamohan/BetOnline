@@ -1,3 +1,4 @@
+/*
 package fr.p12.betonline.services.Impl;
 
 import fr.p12.betonline.beans.Pari_avant;
@@ -6,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by zaraki on 28/04/17.
- */
+ *//*
+
 
 @Service
 public class ListPariImpl implements InterfaceListPariService{
@@ -51,3 +54,4 @@ public class ListPariImpl implements InterfaceListPariService{
     }
 
 }
+*/

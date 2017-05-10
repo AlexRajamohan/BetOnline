@@ -12,11 +12,11 @@ public interface PariService {
 
     Iterable<Pari> listAllParis();
 
-    Pari getPariById(String email);
+    Pari getPariById(String objet);
 
     Pari savePari(Pari pari);
 
-    void deletePari(String email);
+    void deletePari(String objet);
 
     public boolean addAdherent(Adherent adherent);
 

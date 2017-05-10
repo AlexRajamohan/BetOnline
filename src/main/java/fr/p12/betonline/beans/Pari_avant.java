@@ -1,11 +1,14 @@
+/*
 package fr.p12.betonline.beans;
 
 import java.util.ArrayList;
 import java.util.Date;
 
+*/
 /**
  * Created by zaraki on 24/03/17.
- */
+ *//*
+
 public class Pari_avant extends System{
     private String objet;
 
@@ -60,3 +63,4 @@ public class Pari_avant extends System{
     }
 
 }
+*/

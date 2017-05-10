@@ -1,3 +1,4 @@
+/*
 package fr.p12.betonline.beans;
 
 
@@ -6,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
+*/
 /**
  * Created by zaraki on 24/02/17.
- */
+ *//*
+
 
 public class Adherent_avant extends System {
 
@@ -90,3 +93,4 @@ public class Adherent_avant extends System {
 
 
 }
+*/

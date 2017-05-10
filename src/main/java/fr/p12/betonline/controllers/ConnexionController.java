@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 //import redis.clients.jedis.Jedis;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.System;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+
 
 /**
  * Created by zaraki on 14/10/16.
@@ -44,7 +42,13 @@ public class ConnexionController {
 
 
     @RequestMapping(value = "/log")
-    public String displayLoginPage(){
+    public String displayLoginPage(HttpServletRequest request){
+
+/*        if (request.){
+            System.out.println("yes");
+
+        }
+        else System.out.println("no");*/
 
 
 
@@ -57,21 +61,43 @@ public class ConnexionController {
     }
 
     @RequestMapping(value = "/logged", method = RequestMethod.POST)
-    public String displayAccountPage(@RequestParam(value = "inputEmail") String inputEmail,
+    public String setSession(@RequestParam(value = "inputEmail") String inputEmail,
                                      @RequestParam(value = "inputPassword") String inputPassword,
+                                     HttpServletRequest request){
+
+        Adherent adherent=adherentService.getAdherentById(inputEmail);
+        request.getSession().setAttribute("adherent", adherent);
+        System.out.println(adherent.getCompte().getSolde());
+
+        return "redirect:/logged?email="+inputEmail+"&password="+inputPassword;
+    }
+
+    @RequestMapping(value = "/logged", method = RequestMethod.GET)
+    public String displayAccountPage(@RequestParam(value = "email") String email,
+                                     @RequestParam(value = "password") String password,
                                      HttpServletRequest request,
-                                     Model model){
-
-/*        Jedis jedis = new Jedis("localhost");
-        jedis.set("foo", "bar");
-        String value = jedis.get("foo");*/
-
+                                     Model model)  {
 
         Iterable<Pari> listPari= pariService.listAllParis();
         model.addAttribute("listPari", listPari);
 
-        String pageDeRetour="";
-        Iterable<Adherent> listAdherents= adherentService.listAllAdherents();
+        String pageDeRetour="signin/login";
+
+
+
+       Adherent adherent=adherentService.getAdherentById(email);
+       if (adherent.getPassword().equals(password)){
+           return "signin/myAccount";
+       }
+       else {
+           return "signin/login";
+       }
+
+
+
+
+
+              /* Iterable<Adherent> listAdherents= adherentService.listAllAdherents();
         for (Adherent a : listAdherents){
             if(a.getEmail().equals(inputEmail) && a.getPassword().equals(inputPassword)){
 
@@ -85,42 +111,22 @@ public class ConnexionController {
             request.getSession().setAttribute("adherent", a);
 
         }
+*/
 
 
 
-        return pageDeRetour;
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logOutPage(HttpServletRequest request){
+        request.getSession().invalidate();
+         return "redirect:/accueil";
 
     }
 
 
-    @RequestMapping(value = "/transaction")
-    public String displayFormTransactionPage(){
-        return "signin/formTransaction";
-    }
 
 
-    @RequestMapping(value = "/transactionEffectue")
-    public String displayAccountPage(@RequestParam String choixTransaction,
-                                     @RequestParam String inputMontant,
-                                     HttpServletRequest request,
-                                     @RequestParam String valeurSession){
-
-        Adherent adherent=adherentService.getAdherentById(valeurSession);
-
-        if(choixTransaction.equals("Créditer votre compte BetOnline")){
-            adherent.crediterCompte(Float.valueOf(inputMontant));
-            System.out.println(adherent.getCompte().getSolde());
-
-
-        }
-        else adherent.debiterCompte(Float.valueOf(inputMontant));
-        adherentService.saveAdherent(adherent);
-        compteService.saveCompte(adherent.getCompte());
-
-//        return "signin/myAccount";
-
-        return "redirect:/logged{"/********************************A FAIRE ***********************************/
-    }
 
   /*  @RequestMapping(value = "/logged", method = RequestMethod.GET)
     public String displayAccountPage(Model model,
@@ -162,19 +168,7 @@ public class ConnexionController {
 
 
 
-/*
-    @RequestMapping(value = "/miser")
-    public String displayAccountPage(@RequestParam() String buttonMiser){
 
-
-        for (Pari_avant p : listPariAvant){
-            if(p.equals(buttonMiser)){
-                p.addAdherent()
-            }
-
-        }
-        return "signin/myAccount";
-    }*/
 
 
 

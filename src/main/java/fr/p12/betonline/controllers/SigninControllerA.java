@@ -1,3 +1,4 @@
+/*
 package fr.p12.betonline.controllers;
 
 import fr.p12.betonline.beans.Compte;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+*/
 /**
  * Created by audre on 31/03/2017.
- */
+ *//*
+
 
 @Controller
 public class  SigninControllerA {
@@ -66,3 +69,4 @@ public String delete(@PathVariable String email){
 }
 
 }
+*/

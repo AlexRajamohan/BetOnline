@@ -1,9 +1,12 @@
+/*
 package fr.p12.betonline.services.ServiceInterface;
 
 import fr.p12.betonline.beans.Pari_avant;
 
+*/
 /**
- * Created by zaraki on 01/05/17.*/
+ * Created by zaraki on 01/05/17.*//*
+
 
 
 public interface InterfaceListPariService {
@@ -14,3 +17,4 @@ public interface InterfaceListPariService {
 
     public boolean contains(Pari_avant pariAvant);
 }
+*/
